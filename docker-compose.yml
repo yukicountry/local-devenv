@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  application:
+    build:
+      context: ./services/application
+      dockerfile: Dockerfile
+    volumes:
+      - ${BACKEND_PROJECT_DIR}:/application
+    ports:
+      - 8000:8000
+  db:
+    build:
+      context: ./services/db
+      dockerfile: Dockerfile
+    volumes:
+      - volume-db:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  volume-db:
